@@ -28,6 +28,8 @@ pipeline {
           }
         }
       }
+    }
+    stage('Publish latest') {
       steps {
         when { branch 'master' }
         script {
