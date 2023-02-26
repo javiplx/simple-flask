@@ -14,7 +14,9 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'docker build -t javiplx/flaskapp:$BUILD_NUMBER  .'
+        script {
+          dockerImage = docker.build "javiplx/flaskapp:$BUILD_NUMBER"
+        }
       }
     }
   }
