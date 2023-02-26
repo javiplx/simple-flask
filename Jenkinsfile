@@ -7,13 +7,13 @@ pipeline {
   stages {
     stage('Test') {
       steps {
-        sh 'pip install --user -e .[test]'
+        sh 'pip install --user .[test]'
         sh 'python3 -m pytest -vv'
       }
     }
     stage('Build') {
       steps {
-        sh 'pip install build'
+        sh 'pip install --user build'
         sh 'python3 -m build'
       }
     }
