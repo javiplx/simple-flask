@@ -8,4 +8,7 @@ COPY pyproject.toml .
 COPY app app
 RUN pip install .
 
+COPY flaskapp.wsgi /usr/local/bin/
+COPY flaskapp.conf /etc/apache2/sites-available/000-default.conf
+
 CMD ["apache2ctl", "-D", "FOREGROUND"]
