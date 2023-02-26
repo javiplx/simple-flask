@@ -28,6 +28,14 @@ pipeline {
           }
         }
       }
+      steps {
+        when { branch 'master' }
+        script {
+          docker.withRegistry('', 'dockerhub') {
+            dockerImage.push("latest")
+          }
+        }
+      }
     }
   }
 }
