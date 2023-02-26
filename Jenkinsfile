@@ -25,8 +25,9 @@ pipeline {
     stage('Publish') {
       steps {
         script {
-          docker.withRegistry('', DOCKERHUB_AUTH)
-          dockerImage.push(":$BUILD_NUMBER")
+          docker.withRegistry('', DOCKERHUB_AUTH) {
+            dockerImage.push("$BUILD_NUMBER")
+          }
         }
       }
     }
