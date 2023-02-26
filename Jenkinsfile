@@ -30,8 +30,8 @@ pipeline {
       }
     }
     stage('Publish latest') {
+      when { branch 'master' }
       steps {
-        when { branch 'master' }
         script {
           docker.withRegistry('', 'dockerhub') {
             dockerImage.push("latest")
