@@ -14,8 +14,7 @@ pipeline {
     }
     stage('Build') {
       steps {
-        sh 'pip install build'
-        sh 'python3 -m build'
+        sh 'docker build -t javiplx/flaskapp:$BUILD_NUMBER  .'
       }
     }
   }
