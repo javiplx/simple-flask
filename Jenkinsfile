@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {     
+    DOCKERHUB_AUTH= credentials('dockerhub')     
+  } 
   stages {
     stage('Test') {
       agent {
@@ -17,6 +20,13 @@ pipeline {
       steps {
         script {
           dockerImage = docker.build "javiplx/flaskapp:$BUILD_NUMBER"
+        }
+      }
+    stage('Publish') {
+      steps {
+        script {
+          docker.withRegistry('', DOCKERHUB_AUTH)
+          dockerImage.push(":$BUILD_NUMBER")
         }
       }
     }
