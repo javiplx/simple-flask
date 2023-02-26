@@ -22,6 +22,7 @@ pipeline {
           dockerImage = docker.build "javiplx/flaskapp:$BUILD_NUMBER"
         }
       }
+    }
     stage('Publish') {
       steps {
         script {
