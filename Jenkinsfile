@@ -1,8 +1,5 @@
 pipeline {
   agent any
-  environment {     
-    DOCKERHUB_AUTH= credentials('dockerhub')     
-  } 
   stages {
     stage('Test') {
       agent {
@@ -26,7 +23,7 @@ pipeline {
     stage('Publish') {
       steps {
         script {
-          docker.withRegistry('', DOCKERHUB_AUTH) {
+          docker.withRegistry('', 'dockerhub') {
             dockerImage.push("$BUILD_NUMBER")
           }
         }
