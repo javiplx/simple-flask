@@ -4,9 +4,8 @@ pipeline {
     stage('Examine kubernetes') {
       steps {
         script {
-          withKubeConfig(credentialsId: 'kubeconfig',
-                         namespace: 'flaskapp') {
-            sh 'kubectl get all'
+          withKubeConfig(credentialsId: 'kubeconfig') {
+            sh 'kubectl get -A all'
           }
         }
       }
