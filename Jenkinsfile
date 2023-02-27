@@ -39,5 +39,15 @@ pipeline {
         }
       }
     }
+    stage('Update image on kubernetes cluster') {
+      when { branch 'master' }
+      steps {
+        script {
+          withKubeConfig(credentialsId: 'kubeconfig') {
+            sh 'kubectl set image deployment/flaskapp flaskapp=javiplx/flaskapp:$BUILD_NUMBER'
+          }
+        }
+      }
+    }
   }
 }
