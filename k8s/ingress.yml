@@ -3,6 +3,10 @@ kind: Ingress
 metadata:
   name: flaskapp
 spec:
+  tls:
+   - hosts:
+     - flaskapp.localdomain
+     secretName: flaskapp-ingress-tls
   rules:
   - host: flaskapp.localdomain
     http:
